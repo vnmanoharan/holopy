@@ -15,6 +15,7 @@ install:
   - pip install emcee
 # TODO Remove these once setup.py handles dependencies correctly.
   - pip install xarray==0.8.2
+  - pip install xarray --upgrade
   - python setup.py install
   - python setup.py build_ext --inplace
 
