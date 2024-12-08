@@ -20,7 +20,7 @@ import os
 import shutil
 import unittest
 import tempfile
-import multiprocessing as mp
+import multiprocess as mp
 from importlib.util import find_spec
 
 import numpy as np
