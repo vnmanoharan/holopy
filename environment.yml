@@ -9,25 +9,23 @@
 #   conda env update --name holopy-devel --file environment.yml --prune
 #
 # can also use mamba instead of conda in the above
-name: holopy-devel
+name: holopy-37
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.9
-  - numpy<1.21
+  - python
+  - numpy
   - scipy
   - pyyaml
-  # pillow 10.4.0 and later require numpy versions higher than 1.20.3. Tests
-  # will not work with these later versions of pillow.
-  - pillow<10.4.0
-  - pandas=1.5.3
+  - pillow
+  - pandas
   - xarray
   - h5netcdf
   - h5py
   - numexpr
   - matplotlib
-  - emcee=2.2.1
+  - emcee
   # schwimmbad 0.4 and later use multiprocess and dill rather than
   # multiprocessing and pickle. This change may require us to change
   # serialization of HoloPy objects
@@ -41,7 +39,7 @@ dependencies:
   # for amd64 platforms only; won't be found for aarch64
   # - mkl-service
   # uncomment to install compilers on windows
-  # - m2w64-toolchain
+  - m2w64-toolchain
 
   # for building documentation
   - sphinx
