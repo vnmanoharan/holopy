@@ -593,6 +593,7 @@ class TestPriorMath(unittest.TestCase):
     # __array_ufunc__.  See
     # https://numpy.org/devdocs/release/1.21.0-notes.html#array-ufunc-argument-validation
     @pytest.mark.fast
+    @pytest.mark.xfail(reason="numpy argument parsing no longer allows this")
     def test_numpy_ufunc_passes_through_name(self):
         prior_1 = Uniform(2, 8, name='unused')
         new_name = 'name_from_numpy'
