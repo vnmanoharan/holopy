@@ -24,7 +24,6 @@ dependencies:
   - h5netcdf
   - h5py
   - numexpr
-  - matplotlib
   - emcee
   # schwimmbad 0.4 and later use multiprocess and dill rather than
   # multiprocessing and pickle. This change may require us to change
@@ -42,13 +41,6 @@ dependencies:
   - meson
   - meson-python
   - gfortran
-  # installs compilers on linux and OSX
-  # - compilers
-  # for amd64 platforms only; won't be found for aarch64
-  # - mkl-service
-  # uncomment to install compilers on windows
-  - m2w64-toolchain
-
 
   # for running tests: "cov" is coverage plugin, "xdist" is to run pytest in
   # parallel; "timeout" is to set timeout for tests. memory_profiler is needed
