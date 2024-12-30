@@ -2,9 +2,9 @@ name: build and test
 
 on:
   push:
-    branches: [ "ci-updates" ]
+    branches: [ "ruff-linter" ]
   pull_request:
-    branches: [ "ci-updates" ]
+    branches: [ "ruff-linter" ]
 
 jobs:
   build:
