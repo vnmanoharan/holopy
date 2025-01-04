@@ -12,10 +12,8 @@ different than propagation calculations where a collimated light source (plane
 wave) is used. For recontructions using a plane wave see :ref:`recon_tutorial`.
 
 This point-source propagation calculation is an implementation of the algorithm
-that appears in `Jericho and Kreuzer 2010
-<http://link.springer.com/chapter/10.1007%2F978-3-642-15813-1_1>`_. Curently,
-only square input images and propagation through media with a refractive index
-of 1 are supported.
+that appears in [Jericho2011]_. Curently, only square input images and
+propagation through media with a refractive index of 1 are supported.
 
 Example Reconstruction
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -36,7 +34,7 @@ We'll examine each section of code in turn. The first block:
 loads the relevant modules. The second block:
 
 ..  testcode::
-    
+
     imagepath = get_example_data_path('ps_image01.jpg')
     bgpath = get_example_data_path('ps_bg01.jpg')
     L = 0.0407 # distance from light source to screen/camera
@@ -45,28 +43,28 @@ loads the relevant modules. The second block:
     npix_out = 1020 # linear size of output image (pixels)
     zstack = np.arange(1.08e-3, 1.18e-3, 0.01e-3) # distances from camera to reconstruct
 
-defines all parameters used for the reconstruction. Numpy's linspace 
-was used to define a set of distances at 10-micron intervals to 
+defines all parameters used for the reconstruction. Numpy's linspace
+was used to define a set of distances at 10-micron intervals to
 propagate our image to. You can also propagate to a single distance
 or to a set of distances obtained in some other fashion. The third
-block: 
+block:
 
 ..  testcode::
-   
+
     holo = hp.load_image(imagepath, spacing=cam_spacing, illum_wavelen=406e-9, medium_index=1) # load hologram
     bg = hp.load_image(bgpath, spacing=cam_spacing) # load background image
     holo = hp.core.process.bg_correct(holo, bg+1, bg) # subtract background (not divide)
     beam_c = center_of_mass(bg.values.squeeze()) # get beam center
     out_schema = hp.core.detector_grid(shape=npix_out, spacing=cam_spacing/mag) # set output shape
 
-reads in a hologram and subtracts the corresponding background 
-image. If this is unfamiliar to you, please review the 
-:ref:`load_tutorial` tutorial. The third block also finds the center 
-of the reference beam and sets the size and pixel spacing of the 
+reads in a hologram and subtracts the corresponding background
+image. If this is unfamiliar to you, please review the
+:ref:`load_tutorial` tutorial. The third block also finds the center
+of the reference beam and sets the size and pixel spacing of the
 output images.
 
-Finally, the actual propagation is accomplished with 
-:func:`.ps_propagate` and a cropped region of the result is 
+Finally, the actual propagation is accomplished with
+:func:`.ps_propagate` and a cropped region of the result is
 displayed. See the :ref:`recon_tutorial` page for details on
 visualizing the reconstruction results.
 
@@ -126,33 +124,32 @@ visualizing the reconstruction results.
 Magnification and Output Image Size
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Unlike the case where a collimated beam is used as the illumination
-and the pixel spacing in the reconstruction is the same as in the 
+and the pixel spacing in the reconstruction is the same as in the
 original hologram, for lens-free reconstructions the pixel spacing
-in the reconstruction can be chosen arbitrarily. In order to magnify 
-the reconstruction the spacing in the reconstruction plane should be 
+in the reconstruction can be chosen arbitrarily. In order to magnify
+the reconstruction the spacing in the reconstruction plane should be
 smaller than spacing in the original hologram. In the code above, the
-magnification of the reconstruction can be set using the variable 
+magnification of the reconstruction can be set using the variable
 ``mag``, or when calling :func:`.ps_propagate` directly the desired
-pixel spacing in the reconstruction is specified through the 
+pixel spacing in the reconstruction is specified through the
 spacing of ``out_schema``. Note that the output spacing will not be
 the spacing of ``out_schema`` exactly, but should be within a few
-percent of it. We recommend calling :func:`~holopy.core.metadata.get_spacing` on ``recons`` 
+percent of it. We recommend calling :func:`~holopy.core.metadata.get_spacing` on ``recons``
 to get the actual spacing used.
 
-Note that the total physical size of the plane that is reconstructed 
-remains the same when different output pixel spacings are used. This 
+Note that the total physical size of the plane that is reconstructed
+remains the same when different output pixel spacings are used. This
 means that reconstructions with large output spacings will only have
 a small number of pixels, and reconstructions with small output
-spacings will have a large number of pixels. If the linear size (in 
-pixels) of the total reconstruction plane is smaller than 
-``npix_out``, the entire reconstruction plane will be returned. 
+spacings will have a large number of pixels. If the linear size (in
+pixels) of the total reconstruction plane is smaller than
+``npix_out``, the entire reconstruction plane will be returned.
 However, if the linear size of total reconstruction plane is
-larger than ``npix_out``, only the center region of the 
+larger than ``npix_out``, only the center region of the
 reconstruction plane with linear size ``npix_out`` is returned.
 
-In the current version of the code, the amount of memory needed to 
+In the current version of the code, the amount of memory needed to
 perform a reconstruction scales with ``mag``:sup:`2`. Presumably this
 limitation can be overcome by implementing the steps described in the
-*Convolution* section of the *Appendix* of 
-`Jericho and Kreuzer 2010 <http://link.springer.com/chapter/10.1007%2F978-3-642-15813-1_1>`_. 
+*Convolution* section of the *Appendix* of [Jericho2011]_.
 

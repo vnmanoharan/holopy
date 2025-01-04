@@ -256,7 +256,7 @@ The acceptance angle :math:`\beta` is related to the numerical aperture
 or NA of the lens by :math:`\beta = \arcsin(\text{NA} / n_f)`, where
 :math:`n_f` is the refractive index of the immersion fluid. For more
 details on the effect of the lens on the recorded hologram, see
-[Leahy2020]_ and [Martin2021]_.
+[Leahy2020]_, [Alexander2020]_, and [Martin2021]_.
 
 The :class:`.Lens` theory allows HoloPy to include the effects of a
 perfect objective lens with any scattering theory. The Lens theory works

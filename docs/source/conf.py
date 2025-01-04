@@ -81,7 +81,13 @@ extensions = [
     #'numpydoc',
     'sphinx.ext.mathjax',
     'sphinx_rtd_theme',
+    'sphinx.ext.extlinks',
 ]
+
+# Write DOI links using :doi:`[doi]`.  See https://gist.github.com/jonls/b910afc46473b02597c4?permalink_comment_id=4509799#gistcomment-4509799
+extlinks = {
+    'doi': ('https://dx.doi.org/%s', 'doi:%s'),
+}
 
 #numpydoc_class_members_toctree = False
 
