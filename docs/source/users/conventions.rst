@@ -1,5 +1,5 @@
-HoloPy Concepts
-===============
+HoloPy Conventions
+==================
 
 .. _units:
 
@@ -57,8 +57,9 @@ The Euler rotations are performed in the following way:
 3. Rotate the scatterer an angle :math:`\gamma` about the HoloPy :math:`z` axis.
 
 The sense of rotation is as follows: each angle is a rotation in the *clockwise*
-direction about the specified axis, viewed along the positive direction of the axis from
-the origin. This is the usual sense of how rotations are typically defined in math:
+direction about the specified axis, viewed along the positive direction of the
+axis from the origin. This is the usual sense of how rotations are typically
+defined in math:
 
 .. image:: ../images/euler_matrix_eqn.png
    :scale: 100 %

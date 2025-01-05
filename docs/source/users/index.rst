@@ -4,13 +4,15 @@
 User Guide
 ==========
 
-Skip to the :ref:`load_tutorial` tutorial if you already have HoloPy installed
-and want to get started quickly.
+This User Guide explains HoloPy's objects, methods, and tools for analyzing and
+processing holograms.
+
 
 .. toctree::
    :maxdepth: 1
 
+   conventions
    scatterers
    theories
    tools
-   concepts
+
